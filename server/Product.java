@@ -1,26 +1,58 @@
 import java.rmi.RemoteException;
 
-public class Product implements ProductInterface{
-	// Attributes of product
-	private String name;
-	private String description;
-	private double price;
+public class Product implements ProductInterface {
+    private int productCode;
+    private String name;
+    private String description;
+    private int quantity;
+    private double retailPrice;
+    private double storePrice;
 
-	Product(String newName, String newDescription, double newPrice) throws RemoteException{
-		this.name = newName;
-		this.description = newDescription;
-		this.price = newPrice;
-	}
-	public String getName() throws RemoteException{
-		return this.name;
-	}
-	public String getDescription() throws RemoteException{
-		return this.description;
-	}
-	public double getPrice() throws RemoteException{
-		return this.price;
-	}
-	public void changeProductName(String newName) throws RemoteException{
-		this.name = newName;
-	}
+    public Product(int productCode, String name, String description, int quantity, double retailPrice, double storePrice) throws RemoteException {
+        this.productCode = productCode;
+        this.name = name;
+        this.description = description;
+        this.quantity = quantity;
+        this.retailPrice = retailPrice;
+        this.storePrice = storePrice;
+    }
+
+    public int getProductCode() throws RemoteException {
+        return productCode;
+    }
+
+    public String getName() throws RemoteException {
+        return name;
+    }
+
+    public String getDescription() throws RemoteException {
+        return description;
+    }
+
+    public int getQuantity() throws RemoteException {
+        return quantity;
+    }
+
+    public double getRetailPrice() throws RemoteException {
+        return retailPrice;
+    }
+
+    public double getStorePrice() throws RemoteException {
+        return storePrice;
+    }
+
+    public String ViewProducts() throws RemoteException {
+        return  "------------------------\nProduct Code: " + this.productCode +
+                "\nName: " + this.name +
+                "\nDescription: " + this.description +
+                "\nQuantity: " + this.quantity +
+                "\nRetail Price: " + this.retailPrice +
+                "\nStore Price: " + this.storePrice;
+    }
+    public void decrementQuantity() {
+        if (quantity > 0) {
+            quantity--;
+        }
+    }
+    
 }
